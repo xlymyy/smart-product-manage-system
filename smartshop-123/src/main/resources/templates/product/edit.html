@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑商品</title>
+</head>
+<body>
+<h2>编辑商品</h2>
+<form th:action="@{/product/update}" method="post">
+    <!-- 替换隐藏id为可编辑数字输入框 -->
+    <div style="margin:8px 0;">
+        商品ID：
+        <input type="number" name="id" th:value="${product.id}" required min="1" readonly>
+    </div>
+    <div style="margin:8px 0;">
+        商品名称：<input type="text" name="name" th:value="${product.name}" required>
+    </div>
+    <div style="margin:8px 0;">
+        图片路径：<input type="text" name="photoUrl" th:value="${product.photoUrl}">
+    </div>
+    <div style="margin:8px 0;">
+        价格：<input type="number" step="0.01" name="price" th:value="${product.price}" required>
+    </div>
+    <div style="margin:8px 0;">
+        商品详情：<textarea name="descp" th:text="${product.descp}"></textarea>
+    </div>
+    <div style="margin:8px 0;">
+        分类ID：<input type="number" name="catId" th:value="${product.catId}" required>
+    </div>
+    <button type="submit">保存修改</button>
+    <a th:href="@{/product/list}">返回列表</a>
+</form>
+</body>
+</html>

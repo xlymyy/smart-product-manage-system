@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>权限不足</title>
+    <style>
+        .box{width:500px;margin:100px auto;text-align:center;}
+        h1{color:red;}
+    </style>
+</head>
+<body>
+<div class="box">
+    <h1>403 权限不足</h1>
+    <p>当前账号无此操作权限，请使用管理员账号登录</p>
+    <a th:href="@{/product/list}">返回商品列表</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://129.204.142.57:3306/smart_shop_123myy?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Bigdata22!
+  redis:
+    host: 129.204.142.57
+    port: 6379
+server:
+  port: 80

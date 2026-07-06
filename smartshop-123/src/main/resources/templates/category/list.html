@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>分类管理</title>
+</head>
+<body>
+<h2>商品分类列表页面</h2>
+<!-- 分类删除拦截失败提示 -->
+<p th:if="${msg}" style="color:red;font-weight:bold;font-size:16px;" th:text="${msg}"></p>
+
+<!-- 新增分类按钮，放到表格上方 -->
+<div style="margin-bottom:12px;">
+    <a th:href="@{/category/toAdd}">
+        <button>新增分类</button>
+    </a>
+</div>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>分类ID</th>
+        <th>分类名称</th>
+        <th>操作</th>
+    </tr>
+    <!-- 循环后端传入的catList集合 -->
+    <tr th:each="cat : ${catList}">
+        <td th:text="${cat.id}"></td>
+        <td>
+            <a th:href="@{/product/list(categoryId=${cat.id})}">
+                <span th:text="${cat.name}"></span>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/category/toEdit(id=${cat.id})}">
+                <button>编辑</button>
+            </a>
+            <a th:href="@{/category/del(id=${cat.id})}" onclick="return confirm('确定删除该分类？')">
+                <button style="color:red;">删除</button>
+            </a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

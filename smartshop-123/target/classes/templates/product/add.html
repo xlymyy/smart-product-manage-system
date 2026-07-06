@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增商品</title>
+</head>
+<body>
+<h2>新增商品</h2>
+<form th:action="@{/product/add}" method="post">
+    <div style="margin:8px 0;">
+        商品名称：<input type="text" name="name" required>
+    </div>
+    <div style="margin:8px 0;">
+        商品图片路径：<input type="text" name="photoUrl">
+    </div>
+    <div style="margin:8px 0;">
+        商品价格：<input type="number" step="0.01" name="price" required>
+    </div>
+    <div style="margin:8px 0;">
+        商品详情：<textarea name="descp"></textarea>
+    </div>
+    <div style="margin:8px 0;">
+        分类ID：<input type="number" name="catId" required>
+    </div>
+    <button type="submit">提交保存</button>
+    <a th:href="@{/product/list}">返回列表</a>
+</form>
+</body>
+</html>

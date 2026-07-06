@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>商品管理</title>
+</head>
+<body>
+<h2>商品列表页面</h2>
+
+<!-- 搜索表单 -->
+<form th:action="@{/product/list}" method="get" style="margin-bottom:15px;">
+    <input type="hidden" name="categoryId" th:value="${query.categoryId}">
+    商品名称：
+    <input type="text" name="name" th:value="${query.name}" placeholder="模糊搜索商品名">
+    价格区间：
+    <input type="number" step="0.01" name="minPrice" th:value="${query.minPrice}" placeholder="最低价">
+    ~
+    <input type="number" step="0.01" name="maxPrice" th:value="${query.maxPrice}" placeholder="最高价">
+    <button type="submit">搜索</button>
+    <a th:href="@{/product/list(current=1)}">重置</a>
+</form>
+
+<!-- 新增商品按钮 -->
+<div style="margin-bottom:10px;">
+    <a th:href="@{/product/toAdd}">
+        <button>新增商品</button>
+    </a>
+</div>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>商品ID</th>
+        <th>商品名称</th>
+        <th>价格</th>
+        <th>商品详情</th>
+        <th>所属分类</th>
+        <th>操作</th>
+    </tr>
+    <!-- 循环商品数据 -->
+    <tr th:each="item : ${page.list}">
+        <td th:text="${item.id}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.descp}"></td>
+        <td th:text="${item.categoryName}"></td>
+        <td>
+            <a th:href="@{/product/toEdit(id=${item.id})}">
+                <button>编辑</button>
+            </a>
+            <a th:href="@{/product/del(id=${item.id})}" onclick="return confirm('确定删除该商品？删除后不可恢复！')">
+                <button style="color: red;">删除</button>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<!-- 分页区域 -->
+<div style="margin-top:20px;">
+    <span>共 <span th:text="${page.total}"></span> 条，第 <span th:text="${page.pageNum}"></span>/<span th:text="${page.pages}"></span> 页</span>
+    <a th:href="@{/product/list(categoryId=${query.categoryId},name=${query.name},minPrice=${query.minPrice},maxPrice=${query.maxPrice},current=1)}">首页</a>
+    <a th:if="${page.hasPreviousPage}"
+       th:href="@{/product/list(categoryId=${query.categoryId},name=${query.name},minPrice=${query.minPrice},maxPrice=${query.maxPrice},current=${page.pageNum - 1})}">上一页</a>
+    <span th:text="${page.pageNum}"></span>
+    <a th:if="${page.hasNextPage}"
+       th:href="@{/product/list(categoryId=${query.categoryId},name=${query.name},minPrice=${query.minPrice},maxPrice=${query.maxPrice},current=${page.pageNum + 1})}">下一页</a>
+    <a th:href="@{/product/list(categoryId=${query.categoryId},name=${query.name},minPrice=${query.minPrice},maxPrice=${query.maxPrice},current=${page.pages})}">尾页</a>
+</div>
+
+</body>
+</html>

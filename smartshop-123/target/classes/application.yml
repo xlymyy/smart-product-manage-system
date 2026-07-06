@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev # 默认启用开发环境
+  thymeleaf:
+    cache: false # 开发关闭缓存，实时刷新页面
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true # 下划线自动转驼峰
+pagehelper:
+  helperDialect: mysql
+  reasonable: true

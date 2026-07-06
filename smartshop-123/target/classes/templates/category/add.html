@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增分类</title>
+</head>
+<body>
+<h2>新增商品分类</h2>
+<form th:action="@{/category/add}" method="post">
+    <div style="margin:10px 0;">
+        分类名称：
+        <input type="text" name="name" required>
+    </div>
+    <div style="margin:10px 0;">
+        分类描述：
+        <textarea name="descp" rows="3"></textarea>
+    </div>
+    <button type="submit">保存新增</button>
+</form>
+<br>
+<a th:href="@{/category/list}">返回分类列表</a>
+</body>
+</html>

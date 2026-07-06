@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://129.204.142.57:3306/smart_shop_123myy?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Bigdata22!
+  redis:
+    host: 129.204.142.57
+    port: 6379
+    database: 0
+    timeout: 3000ms
+    password: Bigdata22!
+server:
+  port: 8080
